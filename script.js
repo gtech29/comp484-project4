@@ -54,15 +54,37 @@ function setRandomParagraph() {
 }
 
 // Format milliseconds into MM:SS:HHundredths:
+// function formatTime(time) {
+//   let minutes = Math.floor(time / (1000 * 60));
+//   let seconds = Math.floor((time / 1000) % 60);
+//   let hundredths = Math.floor((time % 1000) / 10);
+
+//   // Add leading zero to numbers 9 or below (purely for aesthetics):
+//   minutes = String(minutes).padStart(2, "0");
+//   seconds = String(seconds).padStart(2, "0");
+//   hundredths = String(hundredths).padStart(2, "0");
+
+//   return `${minutes}:${seconds}:${hundredths}`;
+// }
+
+// Add a leading zero if the number is a single digit.
+function addLeadingZero(number) {
+  if (number < 10) {
+    return "0" + number;
+  }
+
+  return String(number);
+}
+
+// Format milliseconds into MM:SS:HHundredths.
 function formatTime(time) {
   let minutes = Math.floor(time / (1000 * 60));
   let seconds = Math.floor((time / 1000) % 60);
   let hundredths = Math.floor((time % 1000) / 10);
 
-  // Add leading zero to numbers 9 or below (purely for aesthetics):
-  minutes = String(minutes).padStart(2, "0");
-  seconds = String(seconds).padStart(2, "0");
-  hundredths = String(hundredths).padStart(2, "0");
+  minutes = addLeadingZero(minutes);
+  seconds = addLeadingZero(seconds);
+  hundredths = addLeadingZero(hundredths);
 
   return `${minutes}:${seconds}:${hundredths}`;
 }
